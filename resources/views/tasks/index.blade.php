@@ -6,18 +6,24 @@
                 {{ __('Tasks') }}
             </h2>
             <div class="flex gap-2">
-                <a href="{{ route('tasks.index', ['order' => 'asc']) }}">
-                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#4d4847" d="m7 14l5-5l5 5z"/></svg>
+                {{-- pour changer la couleur selon tri actif :utiliser l'attribut class et la logique conditionnelle --}}
+                <a href="{{ route('tasks.index', ['order' => 'asc']) }}"
+                   class="{{ request('order') === 'asc' ? 'text-green-500' : 'text-gray-500' }}">
+                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="m7 14l5-5l5 5z"/>
+                    </svg>
                 </a>
-                <a href="{{ route('tasks.index', ['order' => 'desc']) }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#4d4847" d="m7 10l5 5l5-5z"/></svg>
+                <a href="{{ route('tasks.index', ['order' => 'desc']) }}"
+                   class="{{ request('order') === 'desc' ? 'text-green-500' : 'text-gray-500' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="m7 10l5 5l5-5z"/>
+                    </svg>
                 </a> 
             </div>
-            
             <x-button @click="openModale = true">add task</x-button>
         </div>
     </x-slot>
-
+    
     <div class="sm:py-12 py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex sm:flex-row flex-col sm:gap-4 gap-6">
